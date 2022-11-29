@@ -1,14 +1,12 @@
 import path from 'node:path'
 import http from 'node:http'
-import { Server } from 'socket.io'
-
 import express from 'express'
 import mongoose from 'mongoose'
 
+import { Server } from 'socket.io'
 import { router } from './router'
 
-const API_PORT = 3001
-const MONGO_CONNECTION_STRING = 'mongodb://localhost:27017'
+import { apiPort, mongoConnectionString } from './constants'
 
 const app = express()
 const server = http.createServer(app)
@@ -25,11 +23,11 @@ app.use(express.json())
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
 app.use(router)
 
-const runServer = () => server.listen(API_PORT, () => {
-  console.log(`✅ Servidor rodando em   localhost:${API_PORT}`)
+const runServer = () => server.listen(apiPort, () => {
+  console.log(`✅ Servidor rodando em localhost:${apiPort}`)
 })
 
-mongoose.connect(MONGO_CONNECTION_STRING)
+mongoose.connect(mongoConnectionString)
   .then(() => {
     console.log('✅ Conectado ao mongodb.')
     runServer()
