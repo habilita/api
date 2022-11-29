@@ -12,6 +12,9 @@ import { listOrders } from './app/useCases/orders/listOrders'
 import { createOrder } from './app/useCases/orders/createOrder'
 import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus'
 import { cancelOrder } from './app/useCases/orders/cancelOrder'
+import { deleteProduct } from './app/useCases/products/deleteProduct'
+import { deleteCategory } from './app/useCases/categories/deleteCategory'
+import { editProduct } from './app/useCases/products/editProduct'
 
 export const router = Router()
 
@@ -32,11 +35,20 @@ router.get('/categories', listCategories)
 // create category
 router.post('/categories', createCategorie)
 
+// delete category
+router.delete('/categories/:categoryId', deleteCategory)
+
 // list products
 router.get('/products', listProducts)
 
 // create product
 router.post('/products', upload.single('image'), createProduct)
+
+// edit product
+router.patch('/products', upload.single('image'), editProduct)
+
+// delete product
+router.delete('/products/:productId', deleteProduct)
 
 
 // get products by categorie
