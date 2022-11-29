@@ -91,13 +91,13 @@ router.get('/categories/:categoryId/products', listProductsByCategory)
 
 // DASHBOARD
 // list orders
-router.get('/orders', checkToken, listOrders)
+router.get('/orders', listOrders)
 
 // create order
-router.post('/orders', checkToken, createOrder)
+router.post('/orders', createOrder)
 
 // change order status
-router.patch('/orders/:orderId', checkToken, changeOrderStatus)
+router.patch('/orders/:orderId', changeOrderStatus)
 
 // delete/cancel order
-router.delete('/orders/:orderId', checkToken, cancelOrder)
+router.delete('/orders/:orderId', cancelOrder)
