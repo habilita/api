@@ -9,7 +9,9 @@ export async function deleteCategory(req: Request, res: Response) {
 
     await Category.findByIdAndDelete(categoryId)
 
-    res.sendStatus(204)
+    res.sendStatus(204).json({
+      msg: 'categoria deletada com sucesso'
+    })
   } catch(error) {
 
     console.log(error)
