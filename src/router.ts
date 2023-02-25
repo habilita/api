@@ -29,6 +29,7 @@ import {
   listUserSurvey,
 } from './app/useCases/surveys'
 import { secret } from './constants'
+import { editCategory } from './app/useCases/categories/editCategory'
 
 export const router = Router()
 
@@ -78,6 +79,9 @@ router.get('/categories', listCategories)
 
 // create category
 router.post('/categories', checkToken, createCategorie)
+
+// edit category
+router.put('/categories', checkToken, editCategory)
 
 // delete category
 router.delete('/categories', checkToken, deleteCategory)
