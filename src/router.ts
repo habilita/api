@@ -23,6 +23,8 @@ import {
 import {
   createSurvey,
   createUserSurvey,
+  deleteSurvey,
+  deleteUserSurvey,
   listSurveys,
   listUserSurvey,
 } from './app/useCases/surveys'
@@ -97,6 +99,10 @@ router.get('/surveys', checkToken, listSurveys)
 // create survey
 router.post('/surveys', checkToken, createSurvey)
 
+// delete survey
+router.delete('/surveys', checkToken, deleteSurvey)
+
+
 // // edit survey
 // router.patch('/surveys/:surveyId'', checkToken, editSurvey)
 
@@ -109,3 +115,6 @@ router.post('/user/surveys', checkToken, createUserSurvey)
 
 // list user survey
 router.get('/user/surveys', checkToken, listUserSurvey)
+
+// delete user survey
+router.delete('/user/surveys', checkToken, deleteUserSurvey)

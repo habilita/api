@@ -4,6 +4,7 @@ import { deleteSurvey } from './deleteSurvey'
 import { editSurvey } from './editSurvey'
 import { listSurveys } from './listSurveys'
 import { listUserSurvey } from './listUserSurveys'
+import { deleteUserSurvey } from './deleteUserSurvey'
 
 
 export {
@@ -13,4 +14,5 @@ export {
   editSurvey,
   listSurveys,
   listUserSurvey,
+  deleteUserSurvey,
 }

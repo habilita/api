@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { isValidObjectId } from 'mongoose'
-import { Survey } from '../../models/Survey'
+import { UserSurvey } from '../../models/UserSurvey'
 
-export async function deleteSurvey(req: Request, res: Response): Promise<void> {
+export async function deleteUserSurvey(req: Request, res: Response): Promise<void> {
   try {
     const id = req.query.id as string
 
@@ -11,8 +11,8 @@ export async function deleteSurvey(req: Request, res: Response): Promise<void> {
       return
     }
 
-    const surveyDocument = await Survey.findByIdAndDelete(id)
-    if (!surveyDocument) {
+    const userSurveyDocument = await UserSurvey.findByIdAndDelete(id)
+    if (!userSurveyDocument) {
       res.status(404).json({ message: 'Documento não encontrado.' })
       return
     }
