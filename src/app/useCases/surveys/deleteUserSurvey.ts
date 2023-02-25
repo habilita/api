@@ -1,8 +1,9 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
 import { isValidObjectId } from 'mongoose'
+import { AuthenticatedRequest } from '../../interfaces/Authenticated'
 import { UserSurvey } from '../../models/UserSurvey'
 
-export async function deleteUserSurvey(req: Request, res: Response): Promise<void> {
+export async function deleteUserSurvey(req: AuthenticatedRequest, res: Response): Promise<void> {
   try {
     const id = req.query.id as string
 

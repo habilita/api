@@ -39,7 +39,8 @@ export const loginUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       msg: 'Autenticação realizada com sucesso',
-      token
+      token,
+      type: 'bearer'
     })
 
   } catch(error) {

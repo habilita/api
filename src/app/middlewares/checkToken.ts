@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
 import { secret } from '../../constants'
+import { User } from '../models/User'
 
 interface AuthenticatedRequest extends Request {
-  userId?: string
+  user?: User
 }
 
-export function checkToken(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+export async function checkToken(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
 
@@ -18,7 +19,11 @@ export function checkToken(req: AuthenticatedRequest, res: Response, next: NextF
 
   try {
     const decoded = jwt.verify(token, secret) as { userId: string }
-    req.userId = decoded.userId
+    const user = await User.findById(decoded.userId)
+    if (!user) {
+      throw new Error('Usuário não encontrado')
+    }
+    req.user = user
     next()
 
   } catch(error) {
