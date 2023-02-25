@@ -12,7 +12,7 @@ export const Survey = model('Survey', new Schema({
   questions: {
     type: [Schema.Types.ObjectId],
     required: true,
-    ref: 'Category',
+    ref: 'Question',
   },
   category: {
     type: Schema.Types.ObjectId,

@@ -27,7 +27,7 @@ export async function editSurvey(req: Request, res: Response) {
         ...(category && { category }),
         ...(description && { description }),
         ...(maxMinutes && { maxMinutes: Number(maxMinutes) }),
-        ...(!questionsIsEmpty && { questions: JSON.parse(questions) }),
+        ...(!questionsIsEmpty && { questions }),
         ...(title && { title }),
       })
 
