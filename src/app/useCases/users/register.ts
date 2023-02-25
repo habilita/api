@@ -4,7 +4,7 @@ import { User } from '../../models/User'
 import { AuthenticatedRequest } from '../../interfaces/Authenticated'
 
 export const registerUser = async (req: AuthenticatedRequest, res: Response) => {
-  const { name, email, password, confirmpassword, role } = req.body
+  const { name, email, password, confirmpassword } = req.body
 
   // Verificar se todos os campos obrigatórios foram preenchidos
   if (!name) {
