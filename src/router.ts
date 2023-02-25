@@ -17,6 +17,7 @@ import {
 
 import {
   createQuestion,
+  deleteQuestion,
   listQuestions,
 } from './app/useCases/questions'
 
@@ -100,6 +101,9 @@ router.post('/questions', checkToken, createQuestion)
 
 // edit question
 router.patch('/questions', checkToken, editQuestion)
+
+// delete question
+router.delete('/questions', checkToken, deleteQuestion)
 
 // SURVEYS
 // list surveys
