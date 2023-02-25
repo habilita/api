@@ -80,7 +80,7 @@ router.get('/categories', listCategories)
 router.post('/categories', checkToken, createCategorie)
 
 // delete category
-router.delete('/categories/:categoryId', checkToken, deleteCategory)
+router.delete('/categories', checkToken, deleteCategory)
 
 // get products by categorie
 router.get('/categories/:categoryId/products', listProductsByCategory)
