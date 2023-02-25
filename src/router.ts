@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import path from 'node:path'
 import multer from 'multer'
 
-
 import {
   loginUser,
   registerUser
