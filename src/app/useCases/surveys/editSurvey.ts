@@ -19,7 +19,7 @@ export async function editSurvey(req: Request, res: Response) {
       return
     }
 
-    const questionsIsEmpty = questions.length === 0
+    const questionsIsEmpty = !questions || questions.length === 0
 
     const surveyDocument = await Survey.findOneAndUpdate(
       { _id }

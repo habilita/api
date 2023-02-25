@@ -31,6 +31,7 @@ import {
 } from './app/useCases/surveys'
 import { secret } from './constants'
 import { editCategory } from './app/useCases/categories/editCategory'
+import { editQuestion } from './app/useCases/questions/editQuestions'
 
 export const router = Router()
 
@@ -96,6 +97,9 @@ router.get('/questions', checkToken, listQuestions)
 
 // create question
 router.post('/questions', checkToken, createQuestion)
+
+// edit question
+router.patch('/questions', checkToken, editQuestion)
 
 // SURVEYS
 // list surveys
