@@ -32,7 +32,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
   try {
     const token = jwt.sign({
-      id: user._id,
+      userId: user._id,
     },
     secret
     )

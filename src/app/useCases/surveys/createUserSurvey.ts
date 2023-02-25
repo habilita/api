@@ -1,11 +1,11 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
 import { UserSurvey } from '../../models/UserSurvey'
 import { Question } from '../../models/Question'
+import { AuthenticatedRequest } from '../../interfaces/Authenticated'
 
-export async function createUserSurvey(req: Request, res: Response) {
+export async function createUserSurvey(req: AuthenticatedRequest, res: Response) {
   try {
     const {
-      user,
       title,
       questions,
       category,
@@ -34,7 +34,7 @@ export async function createUserSurvey(req: Request, res: Response) {
 
     // Cria o objeto do UserSurvey e o salva no banco de dados
     const userSurvey = await UserSurvey.create({
-      user,
+      user: req.userId,
       title,
       questions: questions,
       percent,

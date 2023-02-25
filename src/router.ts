@@ -1,5 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express'
-import jwt from 'jsonwebtoken'
+import { Router } from 'express'
 import path from 'node:path'
 import multer from 'multer'
 
@@ -30,9 +29,11 @@ import {
   listSurveys,
   listUserSurvey,
 } from './app/useCases/surveys'
-import { secret } from './constants'
+
 import { editCategory } from './app/useCases/categories/editCategory'
 import { editQuestion } from './app/useCases/questions/editQuestions'
+
+import { checkToken } from './app/middlewares'
 
 export const router = Router()
 
@@ -47,27 +48,6 @@ const upload = multer({
   })
 })
 
-function checkToken(req: Request, res: Response, next: NextFunction) {
-  const authHeader = req.headers['authorization']
-  const token = authHeader && authHeader.split(' ')[1]
-
-  if (!token) {
-    return res.status(401).json({
-      msg: 'Acesso negado!'
-    })
-  }
-
-  try {
-
-    jwt.verify(token, secret)
-    next()
-
-  } catch(error) {
-    res.status(400).json({
-      msg: 'Token inválido'
-    })
-  }
-}
 
 // register user
 router.post('/auth/register', registerUser)

@@ -1,10 +1,10 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
+import { AuthenticatedRequest } from '../../interfaces/Authenticated'
 
 import { Question } from '../../models/Question'
 
-export async function listQuestions(req: Request, res: Response) {
+export async function listQuestions(req: AuthenticatedRequest, res: Response) {
   try {
-
     const questions = await Question.find()
     res.json(questions)
 
