@@ -1,23 +1,32 @@
+import { Router, Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 import path from 'node:path'
-
-import { Router, Request, Response, NextFunction } from 'express'
 import multer from 'multer'
 
-import { createCategorie } from './app/useCases/categories/createCategory'
-import { listCategories } from './app/useCases/categories/listCategories'
-import { createProduct } from './app/useCases/products/createProduct'
-import { listProducts } from './app/useCases/products/listProducts'
-import { listProductsByCategory } from './app/useCases/categories/listProductsByCategory'
-import { listOrders } from './app/useCases/orders/listOrders'
-import { createOrder } from './app/useCases/orders/createOrder'
-import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus'
-import { cancelOrder } from './app/useCases/orders/cancelOrder'
-import { deleteProduct } from './app/useCases/products/deleteProduct'
-import { deleteCategory } from './app/useCases/categories/deleteCategory'
-import { editProduct } from './app/useCases/products/editProduct'
-import { registerUser } from './app/useCases/users/register'
-import { loginUser } from './app/useCases/users/login'
+
+import {
+  loginUser,
+  registerUser
+} from './app/useCases/users'
+
+import {
+  createCategorie,
+  deleteCategory,
+  listCategories,
+  listProductsByCategory,
+} from './app/useCases/categories'
+
+import {
+  createQuestion,
+  listQuestions,
+} from './app/useCases/questions'
+
+import {
+  createSurvey,
+  createUserSurvey,
+  listSurveys,
+  listUserSurvey,
+} from './app/useCases/surveys'
 import { secret } from './constants'
 
 export const router = Router()
@@ -72,32 +81,32 @@ router.post('/categories', checkToken, createCategorie)
 // delete category
 router.delete('/categories/:categoryId', checkToken, deleteCategory)
 
-// list products
-router.get('/products', listProducts)
-
-// create product
-router.post('/products', upload.single('image'), checkToken, createProduct)
-
-// edit product
-router.patch('/products', upload.single('image'), checkToken, editProduct)
-
-// delete product
-router.delete('/products/:productId', checkToken, deleteProduct)
-
-
 // get products by categorie
 router.get('/categories/:categoryId/products', listProductsByCategory)
 
+// QUESTIONS
+// list surveys
+router.get('/questions', checkToken, listQuestions)
 
-// DASHBOARD
-// list orders
-router.get('/orders', listOrders)
+// create survey
+router.post('/questions', checkToken, createQuestion)
 
-// create order
-router.post('/orders', createOrder)
+// SURVEYS
+// list surveys
+router.get('/surveys', checkToken, listSurveys)
 
-// change order status
-router.patch('/orders/:orderId', changeOrderStatus)
+// create survey
+router.post('/surveys', checkToken, createSurvey)
 
-// delete/cancel order
-router.delete('/orders/:orderId', cancelOrder)
+// // edit survey
+// router.patch('/surveys/:surveyId'', checkToken, editSurvey)
+
+// // change survey status
+// router.patch('/surveys/:surveyId', changeSurveyStatus)
+
+// USER SURVEYS
+// create user survey
+router.post('/user/surveys', checkToken, createUserSurvey)
+
+// list user survey
+router.get('/user/surveys', checkToken, listUserSurvey)

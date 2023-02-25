@@ -5,8 +5,4 @@ export const Category = model('Category', new Schema({
     type: String,
     required: true
   },
-  icon: {
-    type: String,
-    required: true
-  },
 }))

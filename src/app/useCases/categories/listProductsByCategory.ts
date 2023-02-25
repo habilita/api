@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { Product } from '../../models/Product'
+import { Question } from '../../models/Question'
 
 export async function listProductsByCategory(req: Request, res: Response) {
   try {
@@ -8,7 +8,7 @@ export async function listProductsByCategory(req: Request, res: Response) {
     const idCategory = req.params.categoryId
 
     const productsByCategoryId =
-      await Product.find().where('category').equals(idCategory)
+      await Question.find().where('category').equals(idCategory)
 
     res.json(productsByCategoryId)
 
