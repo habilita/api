@@ -10,7 +10,7 @@ export async function editCategory(req: Request, res: Response) {
       name,
     } = req.body
 
-    if (!isValidObjectId(_id)) {
+    if (!isValidObjectId(String(_id))) {
       res.status(400).json({ message: 'ID da categoria inválido.' })
       return
     }

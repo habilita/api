@@ -25,6 +25,7 @@ import {
   createUserSurvey,
   deleteSurvey,
   deleteUserSurvey,
+  editSurvey,
   listSurveys,
   listUserSurvey,
 } from './app/useCases/surveys'
@@ -90,10 +91,10 @@ router.delete('/categories', checkToken, deleteCategory)
 router.get('/categories/:categoryId/products', listProductsByCategory)
 
 // QUESTIONS
-// list surveys
+// list questions
 router.get('/questions', checkToken, listQuestions)
 
-// create survey
+// create question
 router.post('/questions', checkToken, createQuestion)
 
 // SURVEYS
@@ -102,6 +103,9 @@ router.get('/surveys', checkToken, listSurveys)
 
 // create survey
 router.post('/surveys', checkToken, createSurvey)
+
+// edit survey
+router.patch('/surveys', checkToken, editSurvey)
 
 // delete survey
 router.delete('/surveys', checkToken, deleteSurvey)
