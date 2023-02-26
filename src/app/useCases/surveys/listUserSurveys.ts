@@ -1,10 +1,16 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
+import { AuthenticatedRequest } from '../../interfaces/Authenticated'
 import { UserSurvey } from './../../models/UserSurvey'
 
-export async function listUserSurvey(req: Request, res: Response) {
+export async function listUserSurvey(req: AuthenticatedRequest, res: Response) {
   try {
-    const surveys = await UserSurvey.find().populate('questions.question')
-    res.json(surveys)
+
+    // Busca as surveys do usuário no banco de dados
+    const dbUserSurveys = await UserSurvey
+      .find({ user: { $in: String(req.user?._id) } })
+      .populate('questions.question')
+
+    res.json(dbUserSurveys)
 
   } catch(error) {
 

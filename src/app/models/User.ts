@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Types } from 'mongoose'
 
 export enum UserRole {
   Admin = 'admin',
@@ -10,6 +10,7 @@ export interface User {
   email: string
   password: string
   role: UserRole
+  _id: Types.ObjectId
 }
 
 export const User = model('User', new Schema({

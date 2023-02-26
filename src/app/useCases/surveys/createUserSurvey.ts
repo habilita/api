@@ -34,7 +34,7 @@ export async function createUserSurvey(req: AuthenticatedRequest, res: Response)
 
     // Cria o objeto do UserSurvey e o salva no banco de dados
     const userSurvey = await UserSurvey.create({
-      user: req.userId,
+      user: String(req.user?._id),
       title,
       questions: questions,
       percent,
