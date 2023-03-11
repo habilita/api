@@ -11,11 +11,25 @@ export async function createUserSurvey(req: AuthenticatedRequest, res: Response)
       category,
     } = req.body
 
+    if (!questions) {
+      res.status(401).json({
+        message: 'Questions precisa estar preenchida.'
+      })
+      return
+    }
+
     // Busca os IDs das questões que foram respondidas
     const questionsIds = questions.map((q: any) => q.question)
 
     // Busca as questões no banco de dados
     const dbQuestions = await Question.find({ _id: { $in: questionsIds } })
+
+    if (dbQuestions.length === 0) {
+      res.status(401).json({
+        message: 'Id das questões inválidos ou não encontrados.'
+      })
+      return
+    }
 
     // Calcula a quantidade total de questões
     const totalQuestions = dbQuestions.length
