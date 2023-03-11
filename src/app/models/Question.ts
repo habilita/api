@@ -16,6 +16,10 @@ export const Question = model('Question', new Schema({
         type: Boolean,
         required: true,
       },
+      explanation: {
+        type: String,
+        required: false,
+      },
     }],
   },
   category: {
