@@ -51,6 +51,8 @@ export async function createUserSurvey(req: AuthenticatedRequest, res: Response)
       user: String(req.user?._id),
       title,
       questions: questions,
+      totalAnswers: totalQuestions,
+      correctAnswers: correctAnswers,
       percent,
       category,
     })

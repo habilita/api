@@ -9,6 +9,14 @@ export const UserSurvey = model('UserSurvey', new Schema({
     type: String,
     required: true
   },
+  totalAnswers: {
+    type: Number,
+    required: true,
+  },
+  correctAnswers: {
+    type: Number,
+    required: true,
+  },
   questions: [{
     question: {
       type: Schema.Types.ObjectId,
