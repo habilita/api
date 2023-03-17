@@ -14,9 +14,9 @@ export const io = new Server(server)
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*'),
-  res.setHeader('Access-Control-Allow-Methods', '*'),
-  res.setHeader('Access-Control-Allow-Headers', '*'),
-  next()
+    res.setHeader('Access-Control-Allow-Methods', '*'),
+    res.setHeader('Access-Control-Allow-Headers', '*'),
+    next()
 })
 
 app.use(express.json())
@@ -32,4 +32,4 @@ mongoose.connect(mongoConnectionString)
     console.log('✅ Conectado ao mongodb.')
     runServer()
   })
-  .catch(() => console.log('Erro ao conectar ao mongodb.'))
+  .catch(() => console.log('Erro ao conectar ao mongodb.'));
