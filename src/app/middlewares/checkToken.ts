@@ -26,7 +26,7 @@ export async function checkToken(req: AuthenticatedRequest, res: Response, next:
     req.user = user
     next()
 
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
       msg: 'Token inválido'
     })
