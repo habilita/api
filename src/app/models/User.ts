@@ -1,9 +1,8 @@
 import { model, Schema, Types } from 'mongoose'
 
 export enum UserRole {
-  admin = 'admin',
-  realtor = 'realtor',
-  user = 'user',
+  Admin = 'admin',
+  User = 'user',
 }
 
 export interface User {
@@ -30,6 +29,6 @@ export const User = model('User', new Schema({
   role: {
     type: String,
     enum: Object.values(UserRole),
-    default: UserRole.admin
+    default: UserRole.User
   },
 }))
